@@ -10,9 +10,9 @@ q{LETTER} Append to register
 
 ## Visual Mode
 ```
-~   Swap case
-u   Lowercase
-U   Uppercase
+g~   Swap case
+gu   Lowercase
+gU   Uppercase
 ```
 
 ## Commands

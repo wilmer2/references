@@ -1,20 +1,3 @@
-### Conditionals
-```js
-if (condition) {
-  // ...
-} else if (condition) {
-  // ...
-}
-
-switch (foo) {
-  case condition:
-
-    break;
-  default:
-
-}
-```
-
 ### Arrays
 
 ```js

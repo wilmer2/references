@@ -3,7 +3,8 @@
 ## Data types
 
 ```go
-var x int
+const x = 25
+var a, b int
 
 sum, prod := multiplesValues()
 ```
@@ -40,6 +41,8 @@ val, exist := colors["blue"]
 ```
 
 ## Control Flow
+
+### Conditionals
 ```go
 if condition {
   // ...
@@ -47,28 +50,55 @@ if condition {
   // ...
 }
 
+// With declaration
+if v := n + 1; n < 5 {
+  // ...
+}
+
 switch foo {
   case condition:
+    // ...
+  case value + 5:
     // ...
   default
    // ...
 }
 ```
 
+### Bucles
+```go
+for i := 0; i < n i ++ {
+  // ...
+}
+
+for count < 500 {
+  // ...
+}
+
+// Forever
+for {
+  // ...
+}
+
+// Iterate over slices and maps
+for i, v := range numbers {
+  // ...
+}
+
+```
+
+
 ## Functions
 ```go
-// Multi return
-func function() {
-  return val1, val2
+func function(a, b int) (sum, multi int) {
+  return a + b, a * b
 }
 ```
 
-## Bucles
-```go
-for i := 0; i < 10; i++
+### Defer
+Call a function before return, can have more than one
 
-for sum < 1000
-```
+
 ## Structs
 ```go
 type Cat struct {
@@ -76,7 +106,7 @@ type Cat struct {
   age int
 }
 ```
-### Methods
+## Methods
 ```go
 // Value receiver
 func (c Cat) SayHello() string{
@@ -115,5 +145,40 @@ type admin struct {
 ```go
 type notifier interface {
   notify()
+}
+```
+
+## Concurrancey
+
+### Atomic functions
+```go
+atomic.AddInt64(&counter, 1)
+atomic.StoreInt64(&shutdown, 23)
+atomic.LoadInt64(&shutdown)
+```
+
+### Mutex
+```go
+mutex.Lock() {
+  // ...code
+}
+
+mutex.Unlock()
+```
+### Channels
+```go
+unbuffered := make(chan int)
+buffered := make(chan string, 10)
+
+// Methods
+unbufferred <- 1 // Add data to channel
+data, ok := <- unbuffered // Get data from channel
+close(unbuffered)
+```
+
+#### Passing channel as param
+```go
+func (c chan int) {
+  //...code
 }
 ```

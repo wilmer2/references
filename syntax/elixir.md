@@ -108,7 +108,7 @@ require MyModule
 ```
 
 ### Functions
-```
+```elixir
 def square(x \\ 2) do
   x * x
 end

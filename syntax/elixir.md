@@ -7,9 +7,11 @@
 0o755 # Octals
 0xFF  # Hex
 6.57e-10 # Exp
-"Hello" # Strings
+"Hello" # String (bytes)
+'Hełło' # Charlist (codepoints)
 [1, 2, 3] # List
 { foo: 'bar' } # Tuple
+<< 0, 1, 2 >> # Binaries
 ```
 ### Strings
 ```
@@ -23,6 +25,13 @@
 -- # Substract
 hd # Head
 tl # Tail
+```
+
+### Map
+```
+map = %{ :a => 1, :b => 2 }
+%{ map | :b => 3 } # Update a key
+map.a # Access to key
 ```
 
 ## Pattern Matching
@@ -84,44 +93,45 @@ if true, do: 1 + 2, else: 1 + 3
 defmodule MyMath do
   # ...functions
 end
+
+# Alias
+alias Math.List, as: Listing
+
+# Import
+import MyModule, only: [greet: 1]
+import MyModule, only: :macros
+import MyModule, except: [greet: 1]
+import MyModule, except: :functions
+
+# Require
+require MyModule
 ```
 
 ### Functions
 ```
-def square(x) do
+def square(x \\ 2) do
   x * x
 end
-```
 
-### Functions inline
-```
+# Guards
+def square(x) when x > 0 do
+  x * x
+end
+
+# Inline
 def inline_square(x), do: x * x
-```
 
-### Private functions
+# Private
+defp private_square(x), do: x * x end
 
-```
-defp private_square(x) do
-  x * x
-end
-```
-
-### Anonymous Functions
-```
 # Anonymous
-fn x, y -> x * 2 end
-
-# Anonymous with guards
+fn x -> x * 2 end
 fn
   x, y when x > 0 -> x / 0
   x, y -> x + y
 end
 
-# Shortcut
-&(&1 * &1) # Shorter syntax
-```
-
-### Grabbing functions
-```
+# Grab function
 Enum.map([1, 2, 3], &Module.pow/1)
 ```
+

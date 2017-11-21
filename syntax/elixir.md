@@ -10,7 +10,8 @@
 "Hello" # String (bytes)
 'Hełło' # Charlist (codepoints)
 [1, 2, 3] # List
-{ foo: 'bar' } # Tuple
+{ :foo, "bar" } # Tuple
+%{ foo: "var" } # Map
 << 0, 1, 2 >> # Binaries
 ```
 ### Strings
@@ -29,15 +30,23 @@ tl # Tail
 
 ### Map
 ```elixir
-map = %{ :a => 1, :b => 2 }
-%{ map | :b => 3 } # Update a key
-map.a # Access to key
+# Declaration
+%{ :a => 1, :b => 2 } == %{ a: 1, b: 2 }
+
+# Access
+map.a == Map.fetch(map, :a)
+
+# Update
+%{ map | :b => 3 }
 ```
 
 ## Pattern Matching
 ```elixir
+# Lists
 [head | tail] = [1, 2, 3]
-^x = 2 # Pin operator for rebound
+
+# Pin Operator
+^x = 2
 ```
 
 ## Control Flow

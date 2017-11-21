@@ -2,7 +2,7 @@
 
 ## DataTypes
 
-```
+```elixir
 0b1010 # Binaries
 0o755 # Octals
 0xFF  # Hex
@@ -14,13 +14,13 @@
 << 0, 1, 2 >> # Binaries
 ```
 ### Strings
-```
+```elixir
 "Hello #{world}" # Interpolation
 "Hello" <> "World" # Concatenate
 ```
 
 ### Lists
-```
+```elixir
 ++ # Concatenate
 -- # Substract
 hd # Head
@@ -28,14 +28,14 @@ tl # Tail
 ```
 
 ### Map
-```
+```elixir
 map = %{ :a => 1, :b => 2 }
 %{ map | :b => 3 } # Update a key
 map.a # Access to key
 ```
 
 ## Pattern Matching
-```
+```elixir
 [head | tail] = [1, 2, 3]
 ^x = 2 # Pin operator for rebound
 ```
@@ -43,7 +43,7 @@ map.a # Access to key
 ## Control Flow
 
 ### Case
-```
+```elixir
 case foo do
   pattern ->
     # Code
@@ -57,7 +57,7 @@ end
 ```
 
 ### Cond
-```
+```elixir
 cond do
   2 + 2 == 5 ->
     # ...
@@ -69,7 +69,7 @@ end
 ```
 
 ### if and unless
-```
+```elixir
 if cond do
   # ...
 else
@@ -82,14 +82,14 @@ end
 ```
 
 ### do/end blocks
-```
+```elixir
 if true, do: 1 + 2, else: 1 + 3
 ```
 
 ## Functions and Modules
 
 ### Modules
-```
+```elixir
 defmodule MyMath do
   # ...functions
 end

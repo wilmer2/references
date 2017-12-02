@@ -144,3 +144,16 @@ end
 Enum.map([1, 2, 3], &Module.pow/1)
 ```
 
+
+## Structs
+```elixir
+# Declaration
+defmodule User
+  @enforce_keys [:age]  # Required keys
+  defstruct [:name, :age] # Without default values
+  defstruct name: "John", age: 12
+end
+
+# Usage
+%User{name: "Pedro", age: 23}
+```

@@ -136,6 +136,8 @@ public abstract class Animal {
 ```
 
 ### Final Classes
+```java
 public final class Pepe {
   // ...
 }
+```

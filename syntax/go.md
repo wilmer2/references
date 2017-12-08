@@ -1,17 +1,30 @@
 # Go
 
-## Data types
+## Declarations
 
 ```go
-const x = 25
-var a, b int
-
-sum, prod := multiplesValues()
+var foo int
+var foo int = 42
+var foo, bar int = 42, 104
+foo := 42
+const foo int
 ```
+
+## Built-in Types
+```go
+bool
+string
+int int8 int16 int32 int64
+uint uint8 uint16 uint32 uint64
+byte // alias for uint8
+float32 float64
+complex64 complex128
+```
+
 ### Arrays
 ```go
-numbers := [5]int # Basic declaration
-numbers := [...]{1, 2, 3} # Calculated size
+var foo [2]int // Declare only
+var foo = [2]int{42, 104} // Declare and initialize
 ```
 
 ### Slices
@@ -42,7 +55,7 @@ val, exist := colors["blue"]
 
 ## Control Flow
 
-### Conditionals
+### If
 ```go
 if condition {
   // ...
@@ -51,21 +64,28 @@ if condition {
 }
 
 // With declaration
-if v := n + 1; n < 5 {
+if v := n + 1; condition {
   // ...
 }
+```
 
+### Switch
+```go
 switch foo {
-  case condition:
-    // ...
-  case value + 5:
+  case "foo":
     // ...
   default
    // ...
 }
+
+// With declaration
+switch v := n + 1; v {
+   v > 25:
+    // ...
+}
 ```
 
-### Bucles
+### For
 ```go
 for i := 0; i < n i ++ {
   // ...
@@ -87,17 +107,12 @@ for i, v := range numbers {
 
 ```
 
-
 ## Functions
 ```go
 func function(a, b int) (sum, multi int) {
   return a + b, a * b
 }
 ```
-
-### Defer
-Call a function before return, can have more than one
-
 
 ## Structs
 ```go
@@ -148,7 +163,24 @@ type notifier interface {
 }
 ```
 
-## Concurrancey
+## Concurrency
+
+### Goroutine
+```go
+go greet() // Start routine
+```
+
+### WaitGroup
+```go
+var wg sync.WaitGroup
+wg.add(n)
+
+go func() {
+  defer wg.Done()
+}
+
+wg.Wait()
+```
 
 ### Atomic functions
 ```go
@@ -167,13 +199,17 @@ mutex.Unlock()
 ```
 ### Channels
 ```go
-unbuffered := make(chan int)
-buffered := make(chan string, 10)
+unbuff := make(chan int)
+buff := make(chan string, 10)
 
-// Methods
-unbufferred <- 1 // Add data to channel
-data, ok := <- unbuffered // Get data from channel
-close(unbuffered)
+// Adding data
+unbuff <- data
+
+// Receiving data
+data := <- unbuff // Wait for data and assignate
+
+// Closing
+close(channel)
 ```
 
 #### Passing channel as param

@@ -65,7 +65,17 @@ systemctl cat SERVICE
 
 ## Network
 ```
+nc Open TCP/UDP listen ports
 netstat -an   check ports listening
 ifconfig
 ifdown [interface]
 ```
+
+## Search
+```
+find [directory]
+locate [directory]
+whereis [command]
+```
+
+## Pipes & Redirects

@@ -1,22 +1,24 @@
 # Java
 
-## DataTypes
+## Declaration
 
-### Basic Declaration
 ```java
-int foo
-byte foo
-short foo
-long foo
-float foo double foo
-boolean foo
-char foo
+int foo = 42;
+int[] numbers = new int[3];
+int[] numbers = {1, 2, 3};
+final int foo = 42; // Constant
 ```
 
-### The final keyword
-Final variables can't be reassigned to another object
+## Built-in Types
 ```java
-final int foo
+byte
+short // 16-bits
+int // 32-bit
+long // 64-bit
+float // 32-bit
+double // 64-bit
+boolean // 16-bit
+char
 ```
 
 ## Control Flow
@@ -31,24 +33,7 @@ if (cond) {
 }
 ```
 
-### Ternary
-```java
-int foo = cond ? foo1 : foo2;
-```
-
 ### While
-```java
-while(cond) {
-  // ...
-}
-```
-
-### Do..While
-```java
-do {
-  // ...
-} while(cond)
-```
 
 ### For
 ```java
@@ -62,6 +47,19 @@ for (int i = 0; i <= n; i++) {
 for (int client : clients) {
   // ...
 }
+```
+
+```java
+while(cond) {
+  // ...
+}
+```
+
+### Do..While
+```java
+do {
+  // ...
+} while(cond)
 ```
 
 ### Switch
@@ -83,16 +81,25 @@ try {
   // ...
 } catch (Exception e) {
   // ...
+} finally {
+  // ...
+}
+```
+
+### Custom Error
+```java
+public class MyError extends Exception {
+  public MyError(String message) {
+    super(message);
+  }
 }
 ```
 
 ## Classes
-### Attributes, Methods and Constructor
+### Basic
 ```java
 class Cat {
   public int age;
-  private int type;
-  protected int foo;
   static int foo;
 
   // Constructor
@@ -101,7 +108,7 @@ class Cat {
   }
 
   // methods
-  public void greet() {
+  public void meow() {
     // ...
   }
 }
@@ -109,21 +116,27 @@ class Cat {
 
 ### Inheritance
 ```java
-class Pepe extends Cat {
-  @Override
-  public void greet() {
-    super(); // Call parent method
+class Mamal {
+  public void eat() {
+    // ...
+  }
+}
+
+class Cat extends Mamal {
+  @Overrida
+  public void eat() {
+    super();
   }
 }
 ```
 
 ### Interfaces
 ```java
-public interface Animal {
-  public void greet();
+public interface Mamal {
+  public void eat();
 }
 
-class Pepe implements Animal {
+class Cat implements Mamal {
   // ...
 }
 ```
@@ -137,7 +150,7 @@ public abstract class Animal {
 
 ### Final Classes
 ```java
-public final class Pepe {
+public final class Cat {
   // ...
 }
 ```

@@ -10,6 +10,7 @@
 "Hello" # String (bytes)
 'Hełło' # Charlist (codepoints)
 [1, 2, 3] # List
+[juan: 23, david: 21] # Keyword List
 { :foo, "bar" } # Tuple
 %{ foo: "var" } # Map
 << 0, 1, 2 >> # Binaries
@@ -50,6 +51,20 @@ map.a == Map.fetch(map, :a)
 ```
 
 ## Control Flow
+
+### Comprehension
+```elixir
+for x <- list, do: x * x
+
+# Multiples Lists
+for x <- list1, y <- list, do: x * y
+
+# Filters
+for x <- list, x >= 0, do: x * x
+
+# Change return value
+for x <- list, into: %{}, do: { x, String.uppercase(x) }
+```
 
 ### Case
 ```elixir
@@ -95,55 +110,74 @@ end
 if true, do: 1 + 2, else: 1 + 3
 ```
 
-## Functions and Modules
-
-### Modules
+## Modules
 ```elixir
 defmodule MyMath do
   # ...functions
 end
+```
 
-# Alias
-alias Math.List, as: Listing
+### Attributes (metadada)
+```elixir
+defmodule MyMod do
+  @foo
+end
+```
 
-# Import
+### Importing
+```elixir
 import MyModule, only: [greet: 1]
 import MyModule, only: :macros
 import MyModule, except: [greet: 1]
 import MyModule, except: :functions
-
-# Require
-require MyModule
 ```
 
-### Functions
+### Aliasing
 ```elixir
+alias MyModule.NestedModule.Parser [, as: Parser]
+
+# Multiples
+alias MyModule.NestedModule.{Parser, Runner}
+```
+
+## Functions
+
+```elixir
+#Basic
 def square(x \\ 2) do
-  x * x
+  x * 2
 end
 
-# Guards
+#Private
+defp square(x) do
+  x * 2
+end
+
+# Inline
+def square(x), do: x * 2
+
+#Anonymous
+fn x -> x * 2 end
+```
+
+### Pattern Matching
+```elixir
+def (pattern) do
+  # ...
+end
+```
+
+### Guards
+```elixir
 def square(x) when x > 0 do
   x * x
 end
 
-# Inline
-def inline_square(x), do: x * x
-
-# Private
-defp private_square(x), do: x * x end
-
-# Anonymous
-fn x -> x * 2 end
 fn
   x, y when x > 0 -> x / 0
   x, y -> x + y
 end
-
-# Grab function
-Enum.map([1, 2, 3], &Module.pow/1)
 ```
-
 
 ## Structs
 ```elixir
@@ -156,4 +190,58 @@ end
 
 # Usage
 %User{name: "Pedro", age: 23}
+```
+
+## Documentation
+```elixir
+@moduledoc
+@vs
+@doc
+@spec my_function(number()) :: float()
+```
+
+## Macros
+```elixir
+defmacro double(n) do
+  quote do
+    unquote(n) * 2
+  end
+end
+```
+
+## Errors
+```elixir
+try do
+  # ...
+rescue
+  # ...
+after
+  # ...
+end
+```
+
+### Pattern Matching
+```elixir
+try do
+  # ...
+rescue
+  pattern -> err
+end
+```
+
+
+## Testing
+```elixir
+defmodule CatTest do
+  use ExUnit.Case
+
+  test "Should be true" do
+    assert Cat.has_hat
+  end
+
+  test "Should be false" do
+    refute Cat.has_hat
+  end
+
+end
 ```

@@ -220,6 +220,11 @@ after
 end
 ```
 
+### Raising
+```elixir
+raise RuntimeError, message: "Overrido"
+```
+
 ### Pattern Matching
 ```elixir
 try do
@@ -242,6 +247,23 @@ defmodule CatTest do
   test "Should be false" do
     refute Cat.has_hat
   end
-
 end
 ```
+
+### Fixtures
+```elixir
+defmodule CatTest do
+  describe "Should" do
+    setup do
+      [ numbers: [1, 2, 3] ]
+    end
+
+    test "Testing" do
+      asset fixtures.numbers == [1, 2, 3]
+    end
+  end
+end
+```
+
+## Tools
+[ExCheck](https://github.com/parroty/excheck)

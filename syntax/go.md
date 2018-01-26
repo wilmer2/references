@@ -108,9 +108,27 @@ for i, v := range numbers {
 ```
 
 ## Functions
+### Declaration
 ```go
-func function(a, b int) (sum, multi int) {
-  return a + b, a * b
+func double(n int) int {
+  return n * 2;
+}
+```
+
+### Multiple Return
+```go
+func getCoordinates(cors1, cors2 int) (int, int) {
+  return cors1, cors2;
+}
+```
+
+### Defer
+A defer statement defers the execution of a function until the surrounding function returns.
+```go
+func double(n int) int {
+  defer saveInCache(n);
+
+  return n * 2;
 }
 ```
 
@@ -161,6 +179,19 @@ type admin struct {
 type notifier interface {
   notify()
 }
+```
+
+## Modules & Packages
+
+### Declaration
+```go
+package main // Package declaration
+```
+
+### Importing
+Go only import all methods and function that starts with upperCase letter
+```go
+import "mypackage"
 ```
 
 ## Concurrency

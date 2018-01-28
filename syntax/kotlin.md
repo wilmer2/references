@@ -119,6 +119,12 @@ class Pug {
 }
 ```
 
+### Instanciate
+> There is no `new` keyword in Kotlin
+```kotlin
+pepe = Pug()
+```
+
 ### Properties
 ```kotlin
 class Pug {
@@ -126,7 +132,21 @@ class Pug {
 }
 ```
 
-### Primary Constructor
+#### Getters & Setters
+```kotlin
+class Pug {
+  val name: String
+    get() {
+      // ...
+    }
+    set(value) {
+      // ...
+    }
+}
+```
+### Constructor
+
+#### Primary Constructor
 ```kotlin
 class Pug(name: String = "Pepe") {
   init {
@@ -135,8 +155,18 @@ class Pug(name: String = "Pepe") {
 }
 ```
 
+#### Secondary Constructor
+> If the class has a primary constructor, each secondary constructor needs to delegate to the primary constructor
+```kotlin
+class Pug(name: String) {
+  constructor(name: String, parent: Pug): this(name) {
+    parent.children.add(this)
+  }
+}
+```
+
 ### Inheritance
-All classes are final on kotlin by default, for inheritance requires de `open` keyword
+> All classes are final on kotlin by default, for inheritance requires de `open` keyword
 ```kotlin
 open class Dog
 
@@ -144,31 +174,85 @@ class Pug : Dog {
   // ...
 }
 ```
-#### Overriding Methods
-Requires `open` keyword on parent method
+### Override Methods
+> Requires `open` keyword on parent method
 ```kotlin
 class Pug: Dog {
   override fun greet() {
-    super.greet() // Call to parent
+    super.f() // Call to parent
+    super<Dog>.f() // Call to specific parent
   }
 }
 ```
 
-#### Overriding Properties
-Requires `open` keyword on parent propery
+### Override Properties
+> Requires `open` keyword on parent propery
 ```kotlin
 class Pug: Dog {
   override val name: String = "pepe"
 }
 ```
 
-### Inner Classes
+#### Override on Constructor
 ```kotlin
-class Pug {
-  inner class Pepe {
-    fun foo() {
-      super@Pug.greet() // Call to parent method
+class Pug(override val name: String)
+```
+
+### Nested Classes
+```kotlin
+class Outer {
+    private val bar: Int = 1
+    class Nested {
+        fun foo() = 2
     }
-  }
+}
+
+val demo = Outer.Nested().foo() // == 2
+```
+
+### Inner Classes
+
+```kotlin
+class Outer {
+    private val bar: Int = 1
+    inner class Inner {
+        fun foo() = bar
+    }
+}
+
+val demo = Outer().Inner().foo() // == 1
+```
+
+### Interface
+```kotlin
+interface Animal {
+  fun f()
+}
+
+class Pug : Animal {
+  // ...
+}
+```
+
+### Extensions Functions
+```kotlin
+class Dog {
+  // ...
+}
+
+fun Dog.f() {
+  // ...
+}
+```
+
+### Data Classes
+```kotlin
+data class Pug(val name: String = "Pepe")
+```
+
+### Generics
+```kotlin
+class Box<T>(t: T) {
+  val value = t;
 }
 ```

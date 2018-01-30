@@ -18,6 +18,7 @@ shouldComponentUpdate(nextProps, nextState)
 componentWillUpdate(nextProps, nextState)
 componentDidUpdate(prevProps, prevState)
 componentWillUnmount()
+componentDidCatch(erro, info)
 ```
 
 ## Refs
